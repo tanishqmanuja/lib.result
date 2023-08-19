@@ -1,0 +1,40 @@
+{
+  "name": "@tqman/result",
+  "version": "1.0.0",
+  "description": "simple result wrapper for typescript",
+  "type": "module",
+  "files": [
+    "dist/*",
+    "package.json"
+  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsup"
+  },
+  "author": "tanishqmanuja",
+  "license": "MIT",
+  "repository": "github:tanishqmanuja/lib.result",
+  "devDependencies": {
+    "@types/node": "^20.5.1",
+    "tsup": "^7.2.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6",
+    "vitest": "^0.34.2"
+  },
+  "keywords": [
+    "fp",
+    "ts",
+    "result"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
