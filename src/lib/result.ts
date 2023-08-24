@@ -58,6 +58,11 @@ export function computeResult<T>(
 
 export function computeResult<T>(lazytask: () => T): Result<T, Error>;
 
+/**
+ *
+ * @description Wrap a lazy promise or task in a result type
+ * @type Result is { ok: true, value: T } or { ok: false, error: E }
+ */
 export function computeResult<T>(
   fn: () => T | PromiseLike<T>
 ): Result<T, Error> | PromiseLike<Result<T, Error>> {
