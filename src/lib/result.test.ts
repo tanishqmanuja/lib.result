@@ -3,7 +3,7 @@ import {
   Result,
   isResultError,
   isResultOk,
-  computeResult,
+  resultOf,
   resultError,
   resultOk,
   isResult,
@@ -19,7 +19,7 @@ describe("result", () => {
     expect(isResultOk(resultOkValue)).toBeTruthy();
     expect(isResultError(resultOkValue)).toBeFalsy();
 
-    const resultValue = computeResult(() => value);
+    const resultValue = resultOf(() => value);
     expect(resultValue).toEqual(resultOkValue);
   });
 
@@ -32,7 +32,7 @@ describe("result", () => {
     expect(isResultOk(resultErrorValue)).toBeFalsy();
     expect(isResultError(resultErrorValue)).toBeTruthy();
 
-    const resultValue = computeResult(() => {
+    const resultValue = resultOf(() => {
       throw error;
     });
 
@@ -47,14 +47,14 @@ describe("result", () => {
       throw Error("test error");
     }
 
-    const resultValue = computeResult(() => value);
-    const resultErrorValue = computeResult(thrower);
+    const resultValue = resultOf(() => value);
+    const resultErrorValue = resultOf(thrower);
 
     expectTypeOf(resultValue).toEqualTypeOf<Result<number, Error>>();
     expectTypeOf(resultErrorValue).toEqualTypeOf<Result<void, Error>>();
 
-    const resultResolveValue = computeResult(() => Promise.resolve(value));
-    const resultRejectValue = computeResult(() => Promise.reject(error));
+    const resultResolveValue = resultOf(() => Promise.resolve(value));
+    const resultRejectValue = resultOf(() => Promise.reject(error));
 
     expectTypeOf(resultResolveValue).toEqualTypeOf<
       Promise<Result<number, Error>>

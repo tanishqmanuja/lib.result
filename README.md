@@ -12,7 +12,7 @@ pnpm add @tqman/result
 
 ```ts
 import { readFile } from "fs/promises";
-import { computeResult } from "@tqman/result";
+import { resultOf } from "@tqman/result";
 
 type Config = {
   PORT: number;
@@ -22,7 +22,7 @@ async function readConfigFile(): Promise<Config> {
   return readFile("./config.json", "utf-8").then((data) => JSON.parse(data));
 }
 
-const config = await computeResult(readConfigFile);
+const config = await resultOf(readConfigFile);
 
 if (!config.ok) {
   console.error("Config file not found");
