@@ -21,7 +21,10 @@
   },
   "author": "tanishqmanuja",
   "license": "MIT",
-  "repository": "github:tanishqmanuja/lib.result",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanishqmanuja/lib.result.git"
+  },
   "devDependencies": {
     "@types/node": "^20.12.2",
     "tsup": "^8.0.2",
