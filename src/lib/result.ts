@@ -1,5 +1,3 @@
-import { isNativeError } from "util/types";
-
 /* Type Definitions */
 export type ResultOk<T> = {
   ok: true;
@@ -119,8 +117,17 @@ export function isPromiseLike(value: unknown): value is PromiseLike<unknown> {
   );
 }
 
+export function isError(value: unknown): value is Error {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "message" in value &&
+    typeof value.message === "string"
+  );
+}
+
 export function ensureError(error: unknown): Error {
-  if (isNativeError(error)) {
+  if (isError(error)) {
     return error;
   }
   return new Error(String(error), { cause: error });
